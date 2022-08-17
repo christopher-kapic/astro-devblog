@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import authors from "../pages/_cms/authors.json";
+import About from '../components/About.svelte'
+import { settings } from '../settings'
+---
+
+<BaseLayout title={`${settings.default_title} | Authors`}>
+  <About client:visible authors={authors.authors}/>
+</BaseLayout>

@@ -1,0 +1,6 @@
+[build]
+  command = "npx prisma generate; npx prisma db push; npm run republish; npm run build;"
+  publish = "dist"
+
+[template.environment]
+  DATABASE_URL = "CockroachDB Connection String"

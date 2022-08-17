@@ -1,0 +1,77 @@
+---
+import { settings } from '../settings'
+import MobileNavbarButton from '../components/MobileNavbarButton.svelte'
+import MobileNavbarOpen from '../components/MobileNavbarOpen.svelte'
+import FooterSocials from '../components/FooterSocials.svelte'
+
+export interface Props {
+    title: string | undefined
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{title || settings.default_title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <nav class="relative py-6 bg-gray-900">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a class="text-white hover:text-gray-200 text-3xl font-bold leading-none" href="/">
+                {settings.site_name}
+            </a>
+            <div class="lg:hidden">
+                <MobileNavbarButton client:load {} />
+            </div>
+            <ul
+                class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+                {
+                settings.navbar_links.map((link, idx) => {
+                if (idx === settings.navbar_links.length - 1) {
+                return (
+                <>
+                    <li><a class="text-sm text-gray-300 hover:text-white" href={link.href}>{link.title}</a></li>
+                </>
+                )
+                }
+                return (
+                <>
+                    <li><a class="text-sm text-gray-300 hover:text-white" href={link.href}>{link.title}</a></li>
+                    <li class="text-gray-800">
+                        <svg class="w-4 h-4 current-fill" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                            </path>
+
+                        </svg>
+                    </li>
+                </>
+                )
+                })
+                }
+            </ul>
+        </div>
+    </nav>
+    <MobileNavbarOpen client:load />
+    <slot />
+    <footer>
+        <div class="py-20 bg-gray-900">
+            <div class="max-w-md mx-auto text-center">
+                <a class="inline-block mb-6 mx-auto text-white text-3xl font-bold leading-none" href="/">
+                    {settings.site_name}
+                </a>
+                <p class="mb-6 text-sm font-semibold text-gray-400">© 2022. All rights reserved.<br/>Template by <a href="https://christopherkapic.com" class="underline">Christopher Kapic</a></p>
+                <FooterSocials client:visible {}/>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

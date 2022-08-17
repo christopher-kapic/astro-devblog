@@ -1,0 +1,129 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import authors from '../pages/_cms/authors.json';
+const { content } = Astro.props;
+const dateOptions: {month: 'short', day: 'numeric', year: 'numeric'} = {month: 'short', day: 'numeric', year: 'numeric'}
+const author = authors.authors.filter(author => {return (author.id === content.author[0].value)})[0]
+---
+
+<BaseLayout title={content.title}>
+  <div class="pb-20">
+    <div class="py-20 mb-12" style={`background: url(${content.image}); background-repeat: no-repeat; background-size: cover;`}>
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <!-- <a class="uppercase text-base lg:text-xl text-green-500 hover:text-green-400 hover:underline" href="#">Travel</a> -->
+          <span class="text-base lg:text-xl text-white">{new Date(content.publishDate).toLocaleDateString('en-US', dateOptions)}</span>
+          <div class="mt-2">
+            <h2 class="mb-6 text-4xl lg:text-5xl text-white font-bold">{content.title}</h2>
+            <div class="flex justify-center">
+              <div class="mr-4">
+                <img class="w-12 h-12 object-cover object-top rounded-full" src={author.profilePhoto} alt={`${author.title}'s Profile Photo'`}>
+              </div>
+              <div class="text-left">
+                <a href={author.website}>
+                  <h3 class="text-white hover:underline font-bold drop-shadow-md">{author.title}</h3>
+                </a>
+                <a href={author.website}>
+                  <span class="text-xs text-green-500 font-bold drop-shaow-md">Author</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto px-2">
+      <article class="max-w-2xl mx-auto lg:p-4 p-2 bg-gray-100 rounded-md">
+        <slot />
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(article p) {
+    line-height: 2;
+    color: #4b5563;
+  }
+  :global(article h1) {
+    margin: 3rem 0;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+  }
+  :global(article h2) {
+    font-weight: 600;
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+  :global(article h3) {
+    font-weight: 600;
+    margin: 1.5rem 0;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
+  :global(article h4) {
+    font-weight: 600;
+    margin: 1.25rem 0;
+    font-size: 1.2rem;
+    line-height: 1.25rem;
+  }
+  :global(article h5) {
+    font-weight: 600;
+    margin: 1.25rem 0;
+    font-size: 1.15rem;
+    line-height: 1.25rem;
+  }
+  :global(article h6) {
+    font-weight: 400;
+    margin: 1rem 0;
+    font-size: 1.15rem;
+    line-height: 1.25rem;
+  }
+  :global(article a,a:visited,a:hover,a:active) {
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+    position:relative;
+    transition:0.25s color ease;
+    text-decoration:none;
+    color: #28B554;
+  }
+  :global(article a:hover) {
+    text-decoration: underline;
+    color: #111827;
+  }
+  :global(article code) {
+    background-color: #0D1117;
+    padding: .1rem .3rem;
+    border-radius: 4px;
+    color: #cfcfcf;
+  }
+  :global(article ul) {
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin: 0px;
+    color: #3d3d3d;
+  }
+  :global(article ul ul) {
+    list-style-type: circle;
+  }
+  :global(article ul ul ul) {
+    list-style-type: square;
+  }
+  :global(article ol) {
+    list-style-type: decimal;
+    padding-left: 2rem;
+    color: #3d3d3d;
+  }
+  :global(article ol ol) {
+    list-style-type: lower-alpha;
+  }
+  :global(article ol ol ol) {
+    list-style-type: lower-latin;
+  }
+  :global(article img) {
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+</style>

@@ -1,0 +1,27 @@
+{
+  "name": "@example/basics",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "republish": "ts-node republish.ts",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@astrojs/netlify": "^1.0.1",
+    "@astrojs/svelte": "^1.0.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "astro": "^1.0.3",
+    "gray-matter": "^4.0.3",
+    "prisma": "^4.2.1",
+    "svelte": "^3.49.0",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "nanostores": "^0.6.0"
+  }
+}

@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["debian-openssl-1.1.x", "native"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Author {
+  id        String    @id
+  name      String
+  mediumKey String?
+  mediumId  String?
+  devtoKey  String?
+  Article   Article[]
+}
+
+model Article {
+  id                String   @id
+  publishedToMedium Boolean  @default(false)
+  publishedToDev    Boolean  @default(false)
+  devId             String?
+  updatedAt         DateTime @updatedAt
+  author            Author   @relation(fields: [authorId], references: [id])
+  authorId          String
+}

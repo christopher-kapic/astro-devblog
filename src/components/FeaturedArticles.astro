@@ -1,0 +1,6 @@
+---  
+  import FeaturedArticles from "./FeaturedArticles.svelte";
+  const posts = await Astro.glob('../pages/article/*.md');
+---
+
+<FeaturedArticles client:visible posts={JSON.parse(JSON.stringify(posts))}/>

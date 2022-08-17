@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  # name: test-repo
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: public/cms
+public_folder: /cms
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+    - label: "Home"
+      name: "home"
+      file: "src/pages"
+      fields:
+        - { label: "Title", name: "title", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime" }
+        - { label: "Body", name: "body", widget: "markdown"}
+  - name: "article"
+    label: "Article"
+    folder: "src/pages/article"
+    create: true
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../layouts/Article.astro"}
+      - label: ID
+        name: id
+        widget: ncw-id
+        prefix: article
+        timestamp: true
+        # hint: This widget generates a unique read-only id
+      - { label: "Publish to Medium", name: "medium", widget: "boolean", default: true }
+      - { label: "Publish to Dev.to", name: "devto", widget: "boolean", default: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Author"
+        name: "author"
+        widget: "ncw-file-relation"
+        collection: "authors"
+        file: authors
+        target_field: authors
+        id_field: id
+        display_fields: ["title"]
+      - { label: "Summary", name: "summary", widget: "string" }
+      - { label: "Main Image", name: "image", widget: "image", allow_multiple: false }
+      - label: "Tags"
+        name: "tags"
+        widget: list
+      - { label: "Publish Date", name: "publishDate", widget: "datetime"}
+      - { label: "Update Date", name: "updateDate", widget: "datetime"}
+      - { label: "Content", name: "body", widget: "markdown"}
+  - name: "authors"
+    label: "Authors"
+    files:
+      - label: "Authors"
+        name: "authors"
+        file: src/pages/_cms/authors.json
+        fields:
+          - label: Authors
+            name: authors
+            widget: list
+            allow_add: true
+            fields:
+              - label: ID
+                name: id
+                widget: ncw-id
+                prefix: author
+                timestamp: true
+                # hint: This widget generates a unique read-only id
+              - { label: "Name", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Profile Photo", name: "profilePhoto", widget: "image", allow_multiple: false }
+              - { label: "Portrait", name: "portraitPhoto", widget: "image", allow_multiple: false }
+              - { label: "Twitter Handle", name: "twitter", widget: "string" }
+              - { label: "Website", name: "website", widget: "string" }
