@@ -13,4 +13,10 @@ Astro devblog has several benefits for use as a developer blog.
 1. Completely serverless (no need to pay for hosting with awesome tools like [Netlify](https://netlify.com))
 2. Automatically post to [Medium](https://medium.com) and [Dev.to](https://dev.to/), two blogging platforms often used by developers.
 3. Extensibility - I have done nothing fancy with this template. If you want to change something, it shoudn't be too difficult to do so.
-4. Static - Astro ✨ships zero JavaScript by default✨ which means that Astro Devblog is 🔥blazingly fast🔥
+4. Static - Astro ✨ships zero JavaScript by default✨ which means that Astro Devblog is 🔥blazingly fast🔥.
+
+I'm done actively contributing to this template (unless I decide otherwise), but if you see something that can be improved, feel free to submit a PR. Three things that come to mind:
+
+1. Image optimizations
+2. Improved security (encrypt API tokens in db)
+3. Improve the UI/styling
