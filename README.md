@@ -1,46 +1,16 @@
-# Welcome to [Astro](https://astro.build)
+# Welcome to [Astro Devblog](https://astro-devblog.netlify.app)
+
+Before deploying to Netlify, generate a [CockroachDB serverless database](https://cockroachlabs.cloud/) and copy the connection string.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/christopher-kapic/astro-devblog"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+For a more detailed set of instructions, see [this blog post](https://astro-devblog.netlify.app/article/how-to-use-astro-devblog).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### What is special about Astro Devblog?
 
-## 🚀 Project Structure
+Astro devblog has several benefits for use as a developer blog.
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.ico
-├── src/
-│   ├── components/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components or layouts.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Completely serverless (no need to pay for hosting with awesome tools like [Netlify](https://netlify.com))
+2. Automatically post to [Medium](https://medium.com) and [Dev.to](https://dev.to/), two blogging platforms often used by developers.
+3. Extensibility - I have done nothing fancy with this template. If you want to change something, it shoudn't be too difficult to do so.
+4. Static - Astro ✨ships zero JavaScript by default✨ which means that Astro Devblog is 🔥blazingly fast🔥
