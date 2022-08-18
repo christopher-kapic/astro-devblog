@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 import authors_json from './src/pages/_cms/authors.json' assert {type: "json"};
 import fetch from 'node-fetch'
 
-const url = process.env.URL || 'https://christopherkapic.com';
+const url = process.env.URL;
 
 async function republish() {
   console.log("\nRepublishing articles to Medium and Dev...\n");
