@@ -49,7 +49,7 @@ echo "DATABASE_URL=cockroachdb connection string" > .env
 npm install
 npx prisma generate
 ```
-At this point, we will use Prisma studio to add your API keys to your author entity. Run `npx prisma studio` to start the studio. Once the studio server is live, open it in your web browser, navigate to your author entity, and add your API Keys.
+At this point, we will use Prisma studio to add your API keys to your author entity. Run `npx prisma studio` to start the studio. Once the studio server is live, open it in your web browser, navigate to your author entity, and add your API Keys. You will also need to add your Medium ID. Note: __This is NOT your username__. In order to acquire your ID, paste your Medium API key into the environment variable in `getMediumId.mjs` (or set your `MEDIUM_KEY` environment variable) and run `npm run medkey`. This should return JSON which includes your Medium ID, which you can then paste into Prisma studio.
 Once you have done this, your blog is fully functioning, at least insofar as is possible without modifying the template.
 
 That being said, I encourage you to modify the template. Adjust the UI theme to your liking. If there are any functional improvements, feel free to submit a pull request against the original repository in order to help out future users of the template.
