@@ -1,5 +1,7 @@
 # Welcome to [Astro Devblog](https://astro-devblog.netlify.app)
 
+See the [blog post](https://astro-devblog.netlify.app/article/how-to-use-astro-devblog) or the [YouTube video](https://youtu.be/8c7_vX3XPDc).
+
 Before deploying to Netlify, generate a [CockroachDB serverless database](https://cockroachlabs.cloud/) and copy the connection string.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/christopher-kapic/astro-devblog"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
