@@ -15,6 +15,8 @@ tags:
 publishDate: 2022-08-15T18:25:52.846Z
 updateDate: 2022-08-15T18:25:52.857Z
 ---
+See the [YouTube video](https://youtu.be/8c7_vX3XPDc) or the [git repo](https://github.com/christopher-kapic/astro-devblog).
+
 For those of you who just want instructions, scroll down to the *instructions* section.
 ## Why Astro?
 Astro is a static site generator (and more), which has several good implications for your developer blog:
