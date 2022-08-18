@@ -1,27 +1,19 @@
-const { PrismaClient } = require("@prisma/client");
-const { readdirSync } = require("fs");
-const matter = require("gray-matter");
+import { PrismaClient } from '@prisma/client';
+import {readdirSync} from 'fs'
+import matter from 'gray-matter';
 const prisma = new PrismaClient();
-const authors_json = require("./src/pages/_cms/authors.json");
+import authors_json from './src/pages/_cms/authors.json' assert {type: "json"};
+import fetch from 'node-fetch'
 
-type AuthorCMSType = {
-  id: string;
-  title: string;
-  description: string;
-  profilePhoto: string;
-  portraitPhoto: string;
-  twitter: string;
-  website: string;
-};
-
-const url = process.env.URL;
+const url = process.env.URL || 'https://christopherkapic.com';
 
 async function republish() {
   console.log("\nRepublishing articles to Medium and Dev...\n");
   const files = readdirSync("./src/pages/article");
   for (let _file of files) {
     const file = matter.read(`./src/pages/article/${_file}`);
-    const authors_json_filtered = authors_json.authors.filter((_a: AuthorCMSType) => {
+    console.log(url+(file.data.image))
+    const authors_json_filtered = authors_json.authors.filter((_a) => {
       return _a.id === file.data.author.value;
     });
     const author = await prisma.author.upsert({
@@ -69,12 +61,12 @@ async function republish() {
         body: JSON.stringify({
           title: file.data.title,
           contentFormat: "html",
-          content: file.data.content,
+          content: file.content,
           canonicalUrl: url + (file.path).substring(11).replace('.md', ''),
           tags: file.data.tags,
           publishStatus: "public",
         }),
-      });
+      }).then(r => r.json()).then(r => console.log(r))
 
       const med_article = await prisma.article.upsert({
         where: {
@@ -95,6 +87,7 @@ async function republish() {
       // publish to dev
       console.log(`\nPublishing ${file.data.title} to dev.to`);
       const new_dev_article = await fetch("https://dev.to/api/articles", {
+        method: "POST",
         headers: {
           "api-key": author.devtoKey,
           "Content-Type": "application/json"
@@ -103,9 +96,9 @@ async function republish() {
           article: {
             title: file.data.title,
             published: "true",
-            body_markdown: file.data.content,
+            body_markdown: file.content,
             tags: file.data.tags,
-            main_image: file.data.image,
+            main_image: url + file.data.image,
             canonical_url: url + (file.path).substring(11).replace('.md', ''),
             description: file.data.summary,
           }
@@ -113,6 +106,8 @@ async function republish() {
       })
 
       const new_dev_article_json = await new_dev_article.json();
+
+      console.log(new_dev_article_json)
 
       const dev_article = await prisma.article.upsert({
         where: {
@@ -144,6 +139,7 @@ async function republish() {
       })
 
       await fetch(`https://dev.to/api/articles/${_old_article.devId}`, {
+        method: "PUT",
         headers: {
           "api-key": author.devtoKey,
           "Content-Type": "application/json"
@@ -152,9 +148,9 @@ async function republish() {
           article: {
             title: file.data.title,
             published: "true",
-            body_markdown: file.data.content,
+            body_markdown: file.content,
             tags: file.data.tags,
-            main_image: file.data.image,
+            main_image: url + file.data.image,
             canonical_url: url + (file.path).substring(11).replace('.md', ''),
             description: file.data.summary,
           }

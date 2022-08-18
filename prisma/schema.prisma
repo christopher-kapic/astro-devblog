@@ -16,7 +16,7 @@ model Author {
   name      String
   mediumKey String?
   mediumId  String?
-  devtoKey  String?
+  devtoKey  Int?
   Article   Article[]
 }
 

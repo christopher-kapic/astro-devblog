@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "republish": "ts-node republish.ts",
+    "republish": "node republish.mjs",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.2.1",
-    "nanostores": "^0.6.0"
+    "nanostores": "^0.6.0",
+    "node-fetch": "^3.2.10"
   }
 }
