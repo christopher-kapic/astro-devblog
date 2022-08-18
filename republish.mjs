@@ -60,7 +60,7 @@ async function republish() {
         },
         body: JSON.stringify({
           title: file.data.title,
-          contentFormat: "html",
+          contentFormat: "markdown",
           content: file.content,
           canonicalUrl: url + (file.path).substring(11).replace('.md', ''),
           tags: file.data.tags,
